@@ -43,19 +43,18 @@ int? num_input;
 
 void Main()
 {
-    
-    Console.WriteLine("Welcome to Contoso Pets.\n");
     menu:
+    Console.WriteLine("Welcome to Contoso Pets.\n");
     Console.WriteLine(@"Enter number of the option:
-1. Print animals in total.
-2. List animals by species.
-3. List each animal and animals details.
-4. Check if specified animal's age and physical description are complete.
-5. Check if specified animal's nickname and personality description are complete.
-6. Edit specified animal's age.
-7. Edit animal's personality description.
-8. Add animal to the list.
-9. Exit.");
+    1. Print animals in total.
+    2. List animals by species.
+    3. List each animal and animals details.
+    4. Check if specified animal's age and physical description are complete.
+    5. Check if specified animal's nickname and personality description are complete.
+    6. Edit specified animal's age.
+    7. Edit animal's personality description.
+    8. Add animal to the list.
+    9. Exit.");
     do
     {
         user_input = Console.ReadLine();
@@ -79,22 +78,19 @@ void Main()
                 {
                     Console.WriteLine($"Which position of {ourAnimals.Length} do you want to write?");
                     string str_pos = Console.ReadLine();
-                    int int_pos = Convert.ToInt32(str_pos);
+                    int int_pos = Convert.ToInt32(str_pos) - 1;
                     list_entry(int_pos);
-                    Console.WriteLine("Do you want to write that entry?");
+                    Console.WriteLine("Do you want to overwrite that entry?");
                     decision = y_n_loop();
                     if (decision)
                     {
-                        enter_specimen_data();
-                        return;
+                        enter_specimen_data(int_pos);
+                        goto menu;
                     }
                     else
                     {
-                        back_to_menu();
+                        goto menu;
                     }
-
-
-
                 } while (true);
                 break;
             case 9:
@@ -105,20 +101,6 @@ void Main()
                 return;
         }
     } while (num_input != 9);
-
-    return;
-}
-
-bool back_to_menu()
-{
-    string x;
-    string decision;
-    do
-    { 
-        Console.WriteLine("Press x to return to menu.");
-        decision = Console.ReadLine();
-        if (decision == "x") Main();
-    } while (true);
 }
 
 void print_total()
@@ -160,15 +142,17 @@ void list_w_details()
 
 void list_entry(int pos)
 {
+    string temp = "";
     int i = 0;
     for (i = 0; i < 6; i++)
     {
         string animal = ourAnimals[pos, i];
-        Console.WriteLine(animal);
+        temp += animal + "\n";
     }
+    Console.WriteLine(temp);
 }
 
-void enter_specimen_data()
+void enter_specimen_data(int pos)
 {
     for (int i = 0; i < 5; i++)
     {
@@ -177,24 +161,28 @@ void enter_specimen_data()
             case 0:
                 Console.WriteLine("Enter specimen.");
                 species = Console.ReadLine();
+                ourAnimals[pos, i] = $"Condition:\n{species}";
                 break;
             case 1:
                 Console.WriteLine("Enter age.");
                 age = Console.ReadLine();
+                ourAnimals[pos, i] = $"Condition:\n{age}";
                 break;
             case 2:
-                Console.WriteLine("Enter condition.");
+                Console.WriteLine("Enter condition description.");
                 condition = Console.ReadLine();
+                ourAnimals[pos, i] = $"Condition:\n{condition}";
                 break;
             case 3:
-                Console.WriteLine("Enter personality.");
+                Console.WriteLine("Enter personality description.");
                 personality = Console.ReadLine();
+                ourAnimals[pos, i] = $"Condition:\n{personality}";
                 break;
             case 4:
                 Console.WriteLine("Enter nickname.");
                 nickname = Console.ReadLine();
+                ourAnimals[pos, i] = $"Condition:\n{nickname}";
                 break;
-
         }
     }
 }
@@ -205,10 +193,10 @@ bool y_n_loop()
     do
     {
         Console.WriteLine("Enter yes or not.");
+        decision = Console.ReadLine().ToLower();
         switch (decision)
         {
             case ("yes" or "y"):
-                Console.WriteLine("Exiting.");
                 return true;
             case ("no" or "n"):
                 Console.WriteLine("Enter yes or not.");
@@ -221,17 +209,4 @@ bool y_n_loop()
     
 }
 
-void collect_animal_details()
-{
-    for (int i = 0; i < 6; i++)
-    {
-        
-    }
-}
-
-string[] ret_animal_entry()
-{
-    Console.WriteLine("Enter animal details");
-    string[] entry = {ID, species, age, condition, personality, nickname };
-    return entry;
-}
+Main();
