@@ -45,7 +45,7 @@ void Main()
     int? int_input;
     add_zog();
     menu:
-    Console.WriteLine("Welcome to Contoso Pets.\n");
+    Console.WriteLine("\nWelcome to Contoso Pets.\n");
     Console.WriteLine(@"Enter number of the option:
     1. Print animals in total.
     2. List found animals by species.
@@ -73,6 +73,9 @@ void Main()
                 break;
             case 3:
                 list_w_details();
+                break;
+            case 4:
+                are_age_cond_compl();
                 break;
             case 5:
                 are_nick_pers_compl();
@@ -170,7 +173,7 @@ void list_w_details()
             counter++;
         }
     }
-    if(counter == 0) Console.WriteLine("No animals found.");
+    if(counter == 0) Console.WriteLine("No animals found.\n");
 }
 
 
@@ -193,7 +196,7 @@ void list_entry(int pos)
 void case8()
 {
     string str_pos = "";
-    int int_pos = choose_entry();
+    int int_pos = choose_entry(true);
     list_entry(int_pos);
     Console.WriteLine("Do you want to overwrite that entry?\n");
     bool decision = message_loop();
@@ -268,14 +271,15 @@ bool message_loop()
 // Returns false if input is not correct, otherwise true.
 int sanitize_pos_input(string pos)
 {
-    int int_pos = 0;
+    int int_pos = -1;
     try
     {
         int_pos = Convert.ToInt32(pos);
     }
-    catch (System.FormatException)
+    catch (FormatException e)
     {
-        
+        Console.WriteLine("Input is not a integer value.\n");
+        return -1;
     }    
     if (int_pos != 0) int_pos--;
     if (pos != "" && (int_pos < 0 || int_pos > 10)) return -1;
@@ -287,27 +291,30 @@ int sanitize_pos_input(string pos)
 bool is_entry_filled(int pos)
 {
     if (ourAnimals[pos, 0] != null && ourAnimals[pos, 0].Length > 0) return true;
-    Console.WriteLine("Entry is not valid because it doesn't correspond to animal.");
+    Console.WriteLine("Entry is not valid because it doesn't correspond to animal.\n");
     return false;
 }
 
 
 // provides loop with fault-resistant input
-int choose_entry()
+int choose_entry(bool pass)
 {
     int int_pos;
     bool is_filled;
     do
     {
-        Console.WriteLine($"Which entry of {col} do you want to edit?");
+        Console.WriteLine($"Which entry of {col} do you want to edit?\n");
         string str_pos = Console.ReadLine();
         int_pos = sanitize_pos_input(str_pos);
-        if (int_pos) //here
+        if (int_pos != -1 && !pass)
         {
-            
+            is_filled = is_entry_filled(int_pos);
+            if (is_filled) break;
         }
-        is_filled = is_entry_filled(int_pos);
-        if (is_filled) break;
+        else if (int_pos != -1 && pass)
+        {
+            break;
+        }
     } while (true);
 
     return int_pos;
@@ -317,7 +324,7 @@ int choose_entry()
 // Allows to edit specified animal age.
 void edit_age()
 {
-    int int_pos = choose_entry();
+    int int_pos = choose_entry(false);
     string inp_age = "";
 
     do
@@ -334,7 +341,7 @@ void edit_age()
 // Allows to edit specified animal personality description.
 void edit_pers()
 {
-    int int_pos = choose_entry();
+    int int_pos = choose_entry(false);
     string inp_pers = "";
 
     do
@@ -351,7 +358,7 @@ void edit_pers()
 //    5. Check if specified animal's nickname and personality description are complete.
 void are_nick_pers_compl()
 {
-    int int_pos = choose_entry();
+    int int_pos = choose_entry(false);
     string personality = ourAnimals[int_pos, 4];
     string nickname = ourAnimals[int_pos, 5];
     Console.WriteLine($"Personality description: {personality}\nNickname: {nickname}.\n");
@@ -359,6 +366,31 @@ void are_nick_pers_compl()
     if (personality.Length >= 3 && nickname.Length > 1) Console.WriteLine("Entries are filled.\n");
     
     else Console.WriteLine("Entries are not filled correctly.\n");
+}
+
+// 4. Check if specified animal's age and physical description are complete.
+void are_age_cond_compl()
+{
+    int int_pos = choose_entry(false);
+    string age = ourAnimals[int_pos, 2];
+    string condition = ourAnimals[int_pos, 3];
+    Console.WriteLine($"Age: {age}\nPhysical description: {condition}.\n");
+    if (contains_age_terms(int_pos) && condition.Length > 2) Console.WriteLine("Entries are filled.\n");
+    else Console.WriteLine("Entries are not filled correctly.\n");
+}
+
+
+bool contains_age_terms(int pos)
+{
+    string[] age_terms = { "year, month, day, hour, minute" };
+    foreach (var term in age_terms)
+    {
+        if (ourAnimals[pos, 2].Contains(term))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 Main();
