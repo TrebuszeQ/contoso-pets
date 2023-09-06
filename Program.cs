@@ -303,7 +303,7 @@ int choose_entry(bool pass)
     bool is_filled;
     do
     {
-        Console.WriteLine($"Which entry of {col} do you want to edit?\n");
+        Console.WriteLine($"Provide entry one of {col}.\n");
         string str_pos = Console.ReadLine();
         int_pos = sanitize_pos_input(str_pos);
         if (int_pos != -1 && !pass)
@@ -375,22 +375,40 @@ void are_age_cond_compl()
     string age = ourAnimals[int_pos, 2];
     string condition = ourAnimals[int_pos, 3];
     Console.WriteLine($"Age: {age}\nPhysical description: {condition}.\n");
-    if (contains_age_terms(int_pos) && condition.Length > 2) Console.WriteLine("Entries are filled.\n");
+    if (contains_age_terms(int_pos) && contains_condition_terms(int_pos)) Console.WriteLine("Entries are filled correctly.\n");
     else Console.WriteLine("Entries are not filled correctly.\n");
 }
 
+bool contains_condition_terms(int pos)
+{
+    bool truthiness = true;
+    string[] condition_terms = { "size", "color", "gender", "weight", "housebroken" };
+    foreach (string term in condition_terms)
+    {
+        bool contains = ourAnimals[pos, 3].Contains(term);
+        if (!contains)
+        {
+            Console.WriteLine($"Parameter {term} is missing.");
+            truthiness = false;
+        }
+    }
+    
+    return truthiness;
+}
 
 bool contains_age_terms(int pos)
 {
+    bool truthiness = true;
     string[] age_terms = { "year, month, day, hour, minute" };
-    foreach (var term in age_terms)
+    foreach (string term in age_terms)
     {
         if (ourAnimals[pos, 2].Contains(term))
         {
-            return true;
+            truthiness = false;
+            Console.WriteLine($"None of terms: {age_terms} is not present.");
         }
     }
-    return false;
+    return truthiness;
 }
 
 Main();
