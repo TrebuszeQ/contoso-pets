@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "TpRMZReWS8O4OHjsagX/Zefo6IHKp9E/DI60E4DkZma6H66Xgm0L3iXU8A+ogOC+0Np/8KPtNB/PfIPFPbYO3A==",
+  "success": true,
+  "projectFilePath": "/home/trebuszeq/Documents/NET/contosoPets/C#.csproj",
+  "expectedPackageFiles": [
+    "/home/trebuszeq/.nuget/packages/microsoft.netcore.app.ref/6.0.21/microsoft.netcore.app.ref.6.0.21.nupkg.sha512",
+    "/home/trebuszeq/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.21/microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512",
+    "/home/trebuszeq/.nuget/packages/microsoft.netcore.app.host.linux-x64/6.0.21/microsoft.netcore.app.host.linux-x64.6.0.21.nupkg.sha512"
+  ],
+  "logs": []
+}
