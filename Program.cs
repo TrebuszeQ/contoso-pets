@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿// See https://aka.ms/new-console-template for more information
 
 // string[,] ourAnimals = new string[
@@ -12,6 +13,9 @@
 // ]
 
 string ID = "";
+=======
+﻿string ID = "";
+>>>>>>> e070e6d (09.09 real commit)
 string species = "";
 string age = "";
 string condition = "";
@@ -51,7 +55,11 @@ void Main()
     
     do
     {
+<<<<<<< HEAD
         user_input = Console.ReadLine();
+=======
+        user_input = Console.ReadLine().Replace(" ", "");
+>>>>>>> e070e6d (09.09 real commit)
         int_input = Convert.ToInt32(user_input);
         switch (int_input)
         {
@@ -60,14 +68,23 @@ void Main()
                 break;
             case 2:
                 Console.WriteLine("Enter specimen.");
+<<<<<<< HEAD
                 string spec = Console.ReadLine();
+=======
+                string spec = Console.ReadLine().ToLower().Replace(" ", "");
+>>>>>>> e070e6d (09.09 real commit)
                 list_by_spec(spec);        
                 break;
             case 3:
                 list_w_details();
                 break;
             case 4:
+<<<<<<< HEAD
                 
+=======
+                string[] features = ent_dog_feat();
+                check_winner_dogs(features);
+>>>>>>> e070e6d (09.09 real commit)
                 break;
             case 5:
                 are_age_cond_compl();
@@ -238,6 +255,94 @@ void list_entry(int pos)
 }
 
 
+<<<<<<< HEAD
+=======
+// Collects desirable features of a dog and returns those in array.
+string[] ent_dog_feat() {   
+    
+    string input = "";
+    string[] features = new string[6];
+    Console.WriteLine("Our animals have following features described: size, color, gender, weight, housebroken");
+    for (int i = 0; i < 5; i++) {
+        switch (i) {
+            case 0: 
+                Console.WriteLine("Enter desirable size from small, medium large.");
+                input = Console.ReadLine().ToLower().Replace(" ", "");
+                if (input != "small" && input != "medium" && input != "large" && input != "") {
+                    goto case 0;
+                }
+                features[i] = input;
+                break;
+            case 1:
+                Console.WriteLine("Enter desirable color.");
+                goto case 90;
+            case 2:
+                Console.WriteLine("Enter desirable gender.");
+                goto case 90;
+            case 3:
+                Console.WriteLine("Enter desirable weight in pounds.");
+                goto case 90;
+            case 4:
+                Console.WriteLine("Enter if dog can be housebroken or not.");
+                input = Console.ReadLine().ToLower().Replace(" ", "");
+                if (input == "yes" || input == "y") {
+                    features[i] = "housebroken";
+                } else {
+                    features[i] = "";  
+                }
+
+                break;
+            default:
+                Console.WriteLine("Unhandled case.");
+                break;
+            case 90:
+                input = Console.ReadLine().ToLower().Replace(" ", "");
+                features[i] = input;
+                break;
+        }
+    }
+    return features;
+}
+
+
+// Checks if any dog meets criteria and adds him to winners array. After all prints winner dogs or information.
+void check_winner_dogs(string[] features) {
+    int[] winners = { -1, -1, -1, -1, -1, -1 };
+    ushort counter = 0;
+    bool truth;
+    for (int i = 0; i < col; i++) {
+        truth = true;
+        if (ourAnimals[i, 1].ToLower() == "dog") {
+            foreach (string feature in features) {
+                if (!ourAnimals[i, 3].ToLower().Contains(feature)) truth = false;
+            }
+
+            if (truth) {
+                winners[counter] = i;
+                counter++;
+            }
+
+        }
+
+        if (counter == 0) {
+            Console.WriteLine("No dogs with desired features found.");
+        }
+        else {
+            Console.WriteLine("Following dogs meet criteria.");
+            foreach (int entry in winners)
+                if (entry != -1) {
+                    for (i = 0; i < row; i++) {
+                        Console.WriteLine(ourAnimals[entry, i]);
+                    }
+                }
+        }
+    }
+}
+
+
+
+
+>>>>>>> e070e6d (09.09 real commit)
 // Lists specified entry and returns decision if user wants to overwrite it.
 bool overwrite_entry(int pos)
 {
@@ -269,7 +374,12 @@ void write_pet_data(int pos)
                 ourAnimals[pos, i] = $"Age: {age}\n";
                 break;
             case 3:
+<<<<<<< HEAD
                 Console.WriteLine("Enter condition description.");
+=======
+                Console.WriteLine("Enter physical condition description.");
+                Console.WriteLine("It should contain following features size, color, gender, weight, housebroken");
+>>>>>>> e070e6d (09.09 real commit)
                 condition = Console.ReadLine();
                 ourAnimals[pos, i] = $"Physical description: {condition}\n";
                 break;
@@ -329,7 +439,11 @@ int sanitize_pos_input(string pos)
     }
     catch (FormatException e)
     {
+<<<<<<< HEAD
         Console.WriteLine("Input is not a integer value.\n");
+=======
+        Console.WriteLine("Input is not an integer value.\n");
+>>>>>>> e070e6d (09.09 real commit)
         return -1;
     }    
     if (int_pos != 0) int_pos--;
@@ -337,6 +451,24 @@ int sanitize_pos_input(string pos)
     return int_pos;
 }
 
+<<<<<<< HEAD
+=======
+// Here
+string SanitizeStringInput(string input) {
+    char[] regexp = { '`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '[',  '{', ']', '}', ';', ':', '\'', '\\', '\\', '"', '|', '<', '>', ',', '.', '/', '?' };
+    foreach (char sym in regexp) {
+        if (input.IndexOfAny(regexp) != -1) {
+            input.Replace(regexp, "");
+        }
+
+        if (input.Contains(sym)) input.Replace(sym, '');
+    }
+
+    input = input.ToLower().Replace(" ", "");
+    return input;
+}
+
+>>>>>>> e070e6d (09.09 real commit)
 
 // if entry is not filled writes message and returns false, otherwise only returns true
 bool is_entry_filled(int pos)
@@ -355,7 +487,11 @@ int choose_entry(bool pass)
     do
     {
         Console.WriteLine($"Provide entry one of {col}.\n");
+<<<<<<< HEAD
         string str_pos = Console.ReadLine();
+=======
+        string str_pos = Console.ReadLine().ToLower().Replace(" ", "");
+>>>>>>> e070e6d (09.09 real commit)
         int_pos = sanitize_pos_input(str_pos);
         if (int_pos != -1 && !pass)
         {
