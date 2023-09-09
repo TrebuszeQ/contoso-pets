@@ -71,6 +71,12 @@ ScaffoldingReadMe.txt
 # StyleCop
 StyleCopReport.xml
 
+# Rider
+*obj
+*run
+*.run
+*bin
+
 # Files built by Visual Studio
 *_i.c
 *_p.c

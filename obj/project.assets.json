@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/trebuszeq/Documents/C#/contoso-pets-app/contoso-pets-app.csproj",
-      "projectName": "contoso-pets-app",
-      "projectPath": "/home/trebuszeq/Documents/C#/contoso-pets-app/contoso-pets-app.csproj",
+      "projectUniqueName": "/home/trebuszeq/Documents/C#/contoso-pets-app/C#.csproj",
+      "projectName": "C#",
+      "projectPath": "/home/trebuszeq/Documents/C#/contoso-pets-app/C#.csproj",
       "packagesPath": "/home/trebuszeq/.nuget/packages/",
       "outputPath": "/home/trebuszeq/Documents/C#/contoso-pets-app/obj/",
       "projectStyle": "PackageReference",
