@@ -433,6 +433,7 @@ void are_nick_pers_compl()
     else Console.WriteLine("Entries are not filled correctly.\n");
 }
 
+
 // 4. Check if specified animal's age and physical description are complete.
 void are_age_cond_compl()
 {
@@ -444,6 +445,8 @@ void are_age_cond_compl()
     else Console.WriteLine("Entries are not filled correctly.\n");
 }
 
+
+// Check if physical descriptions contains one of needed terms. 
 bool contains_condition_terms(int pos)
 {
     bool truthiness = true;
@@ -461,6 +464,8 @@ bool contains_condition_terms(int pos)
     return truthiness;
 }
 
+
+// Check if age description contains one of needed terms.
 bool contains_age_terms(int pos)
 {
     bool truthiness = true;

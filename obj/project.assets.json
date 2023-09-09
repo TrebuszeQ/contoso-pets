@@ -13,19 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "/home/trebuszeq/Documents/NET/contosoPets/C#.csproj",
-      "projectName": "C#",
-      "projectPath": "/home/trebuszeq/Documents/NET/contosoPets/C#.csproj",
-      "packagesPath": "/home/trebuszeq/.nuget/packages/",
-      "outputPath": "/home/trebuszeq/Documents/NET/contosoPets/obj/",
-=======
       "projectUniqueName": "/home/trebuszeq/Documents/C#/contoso_pets/C#.csproj",
       "projectName": "C#",
       "projectPath": "/home/trebuszeq/Documents/C#/contoso_pets/C#.csproj",
       "packagesPath": "/home/trebuszeq/.nuget/packages/",
       "outputPath": "/home/trebuszeq/Documents/C#/contoso_pets/obj/",
->>>>>>> 593c151 (09.09 need of merge)
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/trebuszeq/.nuget/NuGet/NuGet.Config"
@@ -62,34 +54,21 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-<<<<<<< HEAD
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.21, 6.0.21]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[6.0.21, 6.0.21]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.21, 6.0.21]"
-          }
-        ],
-=======
->>>>>>> 593c151 (09.09 need of merge)
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/7.0.110/RuntimeIdentifierGraph.json"
-=======
         "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.413/RuntimeIdentifierGraph.json"
->>>>>>> 593c151 (09.09 need of merge)
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/trebuszeq/Documents/C#/contoso_pets/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
